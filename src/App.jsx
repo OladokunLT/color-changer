@@ -1,32 +1,69 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+const colors = [
+  'red', 'blue', 'orange', 'purple',
+  'green', 'yellow', 'brown', 'pink',
+  'tomato', 'indigo', `AliceBlue`,
+  `AntiqueWhite`,
+  `Aqua`,
+  `Aquamarine`,
+  `Azure`,
+  `Beige`,
+  `Bisque`,
+  `Black`,
+  `BlanchedAlmond`,
+  `Blue`,
+  `BlueViolet`,
+  `Brown`,
+  `BurlyWood`,
+  `CadetBlue`,
+  `Chartreuse`,
+  `Chocolate`,
+  `Coral`,
+  `CornflowerBlue`,
+  `Cornsilk`,
+  `Crimson`,
+  `Cyan`,
+  `DarkBlue`,
+  `DarkCyan`,
+];
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [count, setCount] = useState(0);
+  // const [like, setLike] = useState(1);
+  // const handleLike = () => setLike(like + 1);
+  const [color, setColor] = useState("red");
+  
+  
+  let bgColor = document.body
+  const handleCount = () => setCount(count + 1);
+  const handleColorChange = () => {
+    let randomNumber = Math.floor(Math.random() * colors.length)
+    setColor(colors[randomNumber]);
+    bgColor.style.backgroundColor = colors[randomNumber]
+  }
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
       <h1>Vite + React</h1>
-      <div className="card">
+      <h2 >Named color</h2>
+      <h2>Hex color</h2>
+      {/* <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      </div> */}
+      {/* <div className="card">
+        <button onClick={handleLike}>
+          like is {like}
+        </button>
+      </div> */}
+      <div className="card">
+        <button onClick={handleColorChange}>
+          click to change color
+        </button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+      <p className="">
+        {color} {count}
       </p>
     </>
   )
