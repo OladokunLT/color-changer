@@ -1,70 +1,113 @@
 import { useState } from 'react'
 import './App.css'
-const colors = [
-  'red', 'blue', 'orange', 'purple',
-  'green', 'yellow', 'brown', 'pink',
-  'tomato', 'indigo', `AliceBlue`,
-  `AntiqueWhite`,
-  `Aqua`,
-  `Aquamarine`,
-  `Azure`,
-  `Beige`,
-  `Bisque`,
-  `Black`,
-  `BlanchedAlmond`,
-  `Blue`,
-  `BlueViolet`,
-  `Brown`,
-  `BurlyWood`,
-  `CadetBlue`,
-  `Chartreuse`,
-  `Chocolate`,
-  `Coral`,
-  `CornflowerBlue`,
-  `Cornsilk`,
-  `Crimson`,
-  `Cyan`,
-  `DarkBlue`,
-  `DarkCyan`,
-];
 
-function App() {
-  const [count, setCount] = useState(0);
-  // const [like, setLike] = useState(1);
-  // const handleLike = () => setLike(like + 1);
-  const [color, setColor] = useState("red");
-  
-  
-  let bgColor = document.body
-  const handleCount = () => setCount(count + 1);
+const SimpleColor = () => {
+  const [color, setColor] = useState("white");
+
+  const colors = [
+    'red', 'blue', 'orange', 'purple',
+    'green', 'yellow', 'brown', 'pink',
+    'tomato', 'indigo', `AliceBlue`,
+    `AntiqueWhite`,
+    `Aqua`,
+    `Aquamarine`,
+    `Azure`,
+    `Beige`,
+    `Bisque`,
+    `Black`,
+    `BlanchedAlmond`,
+    `Blue`,
+    `BlueViolet`,
+    `Brown`,
+    `BurlyWood`,
+    `CadetBlue`,
+    `Chartreuse`,
+    `Chocolate`,
+    `Coral`,
+    `CornflowerBlue`,
+    `Cornsilk`,
+    `Crimson`,
+    `Cyan`,
+    `DarkBlue`,
+    `DarkCyan`,
+  ];
+
   const handleColorChange = () => {
     let randomNumber = Math.floor(Math.random() * colors.length)
     setColor(colors[randomNumber]);
-    bgColor.style.backgroundColor = colors[randomNumber]
+    document.body.style.backgroundColor = colors[randomNumber]
   }
+
   return (
-    <>
-      <h1>Vite + React</h1>
-      <h2 >Named color</h2>
-      <h2>Hex color</h2>
-      {/* <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div> */}
-      {/* <div className="card">
-        <button onClick={handleLike}>
-          like is {like}
-        </button>
-      </div> */}
+    <main>
+      <h2>
+        Background Color: {color} 
+      </h2>      
       <div className="card">
         <button onClick={handleColorChange}>
-          click to change color
+          Change Color
         </button>
       </div>
-      <p className="">
-        {color} {count}
-      </p>
+    </main>
+  );
+}
+
+const HexColor = () => {
+  const [color, setColor] = useState("#fff");
+  const handleColorChange = () => {
+    let charArr = "0123456789ABCDEF".split("");
+    let hexColor = "#";
+    for (let index = 0; index < 6; index++) {
+      let randomChar = charArr[Math.floor(Math.random() * charArr.length)];
+      hexColor += randomChar
+    }
+    setColor(hexColor);
+    document.body.style.backgroundColor = hexColor;
+  }
+
+  return (
+    <main>
+      <h2>
+        Background Color: {color} 
+      </h2>      
+      <div className="card">
+        <button onClick={handleColorChange}>
+          Change color
+        </button>
+      </div>
+    </main>
+  );
+}
+
+function App() {
+  const [isSimpleColor, setIsSimpleColor] = useState(true)
+
+  const handleIsSimpleColor = () => {
+    document.body.style.backgroundColor = "white"
+    setIsSimpleColor(true)
+  }
+  const handleIsHexColor = () => {
+    document.body.style.backgroundColor = "#fff"
+    setIsSimpleColor(false)
+  }
+  
+  return (
+    <>
+      <nav className='nav'>
+        <div className="wrap">
+          <h1>Color Flipper</h1>
+          <ul className='list-wrap'>
+            <li><a href="#" className='simple-color' onClick={handleIsSimpleColor}> Simple </a></li>
+            <li><a href="#" className='hex-color' onClick={handleIsHexColor}> Hex </a></li>
+          </ul>
+        </div>
+      </nav>
+
+      {
+        isSimpleColor ? 
+        ( <SimpleColor /> ) :
+        ( <HexColor /> )
+      }
     </>
   )
 }
