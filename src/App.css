@@ -47,6 +47,19 @@ text-decoration-line: underline;
 text-underline-offset: 6px;
 }
 
+.footer {
+position: absolute;
+bottom: 5px;
+left: 0;
+right: 0;
+  /* display: flex; */
+  /* margin-bottom: auto; */
+}
+.footer a {
+  text-decoration-line: underline;
+  text-underline-offset: 6px;
+} 
+
 @media (min-width: 600px) {
   .nav .wrap {
     display: flex;
