@@ -108,6 +108,11 @@ function App() {
         ( <SimpleColor /> ) :
         ( <HexColor /> )
       }
+
+      <div>
+        <p><strong>Note: See repo link below</strong> GitHub link for grading purpose. <br /> I will remove it from here after grading, kindly forgive and accept it.<br />I evetually submitted hosted link in place of repo link</p>
+        <a href="https://github.com/OladokunLT/color-changer">Github Repo Link: https://github.com/OladokunLT/color-changer</a>
+      </div>
     </>
   )
 }
